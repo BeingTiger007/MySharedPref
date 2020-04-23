@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:background="@color/colorAccent"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Admin panel"
+        android:textSize="18dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:layout_margin="10dp"
+        android:id="@+id/admin_username"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="admin username"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textAlignment="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/admin_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="admin password"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textAlignment="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/users_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="user's username"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textAlignment="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/users_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="user's password"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:background="@color/colorAccent"
+        android:layout_margin="10dp"
+        android:id="@+id/iot_dialog_box_doneBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:textSize="17dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
+
+</LinearLayout>

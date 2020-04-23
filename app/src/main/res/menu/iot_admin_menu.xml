@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/create_new_user"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:title="Create New User"
+        app:showAsAction="never"/>
+        app:showAsAction="never"/>
+    <item android:id="@+id/connect_existing_user"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:title="Connect Existing User"
+        app:showAsAction="never"/>
+    <item android:id="@+id/delete_existing_user"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:title="Delete Existing User"
+        app:showAsAction="never"/>
+
+</menu>
