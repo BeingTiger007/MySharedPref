@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 .setExpanded(false)  // This will enable the expand feature, (similar to android L share dialog)
                 .create();
 
-        View holderView = (LinearLayout)dialog.getHolderView();
+        View holderView = dialog.getHolderView();
 
         final EditText admin_username = holderView.findViewById(R.id.admin_username);
         final EditText admin_password = holderView.findViewById(R.id.admin_password);
