@@ -20,17 +20,25 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor myEdit;
-    private String admin_usernameS,admin_passwordS;
+    String admin_usernameS,admin_passwordS;
+
+    FirebaseDatabase database;
+    DatabaseReference FlagRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home Automation System");
 
+        updateAdminCredentials();
+
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
             toolbar.setSubtitle("Your not connected");
         }
@@ -51,7 +61,27 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("myDevices", Context.MODE_PRIVATE);
         myEdit= preferences.edit();
+    }
 
+    private void updateAdminCredentials() {
+        database = FirebaseDatabase.getInstance();
+        FlagRef = database.getReference("IoT").child("Admin");
+
+        FlagRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                admin_usernameS = dataSnapshot.child("username").getValue(String.class);
+                Toast.makeText(MainActivity.this,"admin username updated",Toast.LENGTH_SHORT).show();
+                admin_passwordS = dataSnapshot.child("password").getValue(String.class);
+                Toast.makeText(MainActivity.this,"admin password updated",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -65,14 +95,17 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.create_new_user:
                 // do something
+                updateAdminCredentials();
                 create_new_user();
                 return true;
             case R.id.connect_existing_user:
                 // do something
+                updateAdminCredentials();
                 connect_existing_user();
                 return true;
             case R.id.delete_existing_user:
                 // do something
+                updateAdminCredentials();
                 delete_existing_user();
                 return true;
             default:
@@ -125,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 if (failFlag) {
                     Toast.makeText(MainActivity.this,"Please enter all fields",Toast.LENGTH_SHORT).show();
 
-                } else if(admin_username.getText().toString().equals("aslam") && admin_password.getText().toString().equals("aslam")
+                } else if(admin_username.getText().toString().equals(admin_usernameS) && admin_password.getText().toString().equals(admin_passwordS)
                         && users_password.getText().toString().equals(preferences.getString("users_password",""))
                         && users_username.getText().toString().equals(preferences.getString("users_username",""))){
 
@@ -201,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
                 if (failFlag) {
                     Toast.makeText(MainActivity.this,"Please enter all fields",Toast.LENGTH_SHORT).show();
 
-                } else if(admin_username.getText().toString().equals("aslam") && admin_password.getText().toString().equals("aslam")){
+                } else if(admin_username.getText().toString().equals(admin_usernameS) && admin_password.getText().toString().equals(admin_passwordS)){
                     myEdit.putString("users_username", users_username.getText().toString());
                     myEdit.putString("users_password", users_password.getText().toString());
                     myEdit.apply();
@@ -263,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                 if (failFlag) {
                     Toast.makeText(MainActivity.this,"Please enter all fields",Toast.LENGTH_SHORT).show();
 
-                } else if(admin_username.getText().toString().equals("aslam") && admin_password.getText().toString().equals("aslam")){
+                } else if(admin_username.getText().toString().equals(admin_usernameS) && admin_password.getText().toString().equals(admin_passwordS)){
 
                     myEdit.putString("users_username", users_username.getText().toString());
                     myEdit.putString("users_password", users_password.getText().toString());
