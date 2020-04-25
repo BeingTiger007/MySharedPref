@@ -1,7 +1,10 @@
 package com.example.mysharedpref;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -33,13 +36,14 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor myEdit;
+    SharedPreferences preferences;
+    SharedPreferences.Editor myEdit;
     String admin_usernameS,admin_passwordS,user_usernameS,user_passwordS;
 
     FirebaseDatabase database;
     DatabaseReference FlagRef;
     TextView usernameText;
+    Button next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +54,9 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(this.getResources().getColor(R.color.colorAccent));
         getWindow().setNavigationBarColor(this.getResources().getColor(R.color.colorAccent));
 
-        Toolbar toolbar = findViewById(R.id.myToolBar);
+        Toolbar toolbar = findViewById(R.id.myToolBar1);
         usernameText= findViewById(R.id.IoT_username);
+        next = findViewById(R.id.IoT_scrrenBtn);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home Automation System");
@@ -75,10 +80,12 @@ public class MainActivity extends AppCompatActivity {
         user_passwordS = preferences.getString("users_password",null);
         if (user_usernameS != null && user_passwordS != null )
         {   //username and password are present, do your stuff
-            usernameText.setText("Username : "+user_usernameS+"\nPassword : "+user_passwordS);
+            usernameText.setText("Welcome To College of Compute Science &\nInformation Technology IoT Eco System\n\nUsername : "+user_usernameS+"\nPassword : "+user_passwordS);
+            next.setEnabled(true);
             Toast.makeText(MainActivity.this,"Connected Successfully",Toast.LENGTH_SHORT).show();
         }
         else{
+            next.setEnabled(false);
             usernameText.setText("Currently your not connected to any IoT user account. Please contact admin for more information.");
             Toast.makeText(MainActivity.this,"Your not connected",Toast.LENGTH_SHORT).show();
         }
@@ -190,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(MainActivity.this,"User deleted and disconnected successfully",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this,"User deleted and\ndisconnected successfully",Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
                                 }
                             });
@@ -327,16 +334,16 @@ public class MainActivity extends AppCompatActivity {
 
                     HashMap<String, Object> map = new HashMap<>();
                     map.put("password", users_password.getText().toString());
-                    map.put("D0", 0);
-                    map.put("D1", 0);
-                    map.put("D2", 0);
-                    map.put("D3", 0);
-                    map.put("D4", 0);
-                    map.put("D5", 0);
-                    map.put("D6", 0);
-                    map.put("D7", 0);
-                    map.put("D8", 0);
-                    map.put("D9", 0);
+                    map.put("D0", false);
+                    map.put("D1", false);
+                    map.put("D2", false);
+                    map.put("D3", false);
+                    map.put("D4", false);
+                    map.put("D5", false);
+                    map.put("D6", false);
+                    map.put("D7", false);
+                    map.put("D8", false);
+                    map.put("D9", false);
 
                     FirebaseDatabase.getInstance().getReference()
                             .child("IoT")
@@ -361,4 +368,15 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    public void openIoTscreen(View view) {
+        final ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        if( activeNetwork != null && activeNetwork.isConnected() ) {
+            Intent intent = new Intent(MainActivity.this, iot_devices.class);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Your not connected to internet",Toast.LENGTH_SHORT).show();
+        }
+    }
 }

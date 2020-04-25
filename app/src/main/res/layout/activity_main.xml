@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/myToolBar"
+        android:id="@+id/myToolBar1"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@color/colorAccent"
@@ -23,8 +24,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myToolBar"
-        app:layout_constraintVertical_bias="0.3">
+        app:layout_constraintTop_toBottomOf="@id/myToolBar1"
+        app:layout_constraintVertical_bias="0.2">
 
         <TextView
             android:id="@+id/IoT_username"
@@ -63,5 +64,20 @@
             android:textSize="15dp" />
 
     </LinearLayout>
+
+    <Button
+        android:background="@color/colorWhite"
+        android:text="open control panel"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:id="@+id/IoT_scrrenBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="openIoTscreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
