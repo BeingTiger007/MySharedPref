@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,23 +30,28 @@ import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor myEdit;
-    String admin_usernameS,admin_passwordS;
+    String admin_usernameS,admin_passwordS,user_usernameS,user_passwordS;
 
     FirebaseDatabase database;
     DatabaseReference FlagRef;
+    TextView usernameText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //changing statusbar color
+        getWindow().setStatusBarColor(this.getResources().getColor(R.color.colorAccent));
+        getWindow().setNavigationBarColor(this.getResources().getColor(R.color.colorAccent));
+
         Toolbar toolbar = findViewById(R.id.myToolBar);
+        usernameText= findViewById(R.id.IoT_username);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home Automation System");
@@ -60,7 +66,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         preferences = getSharedPreferences("myDevices", Context.MODE_PRIVATE);
+        updateUserConnectedStatus();
         myEdit= preferences.edit();
+    }
+
+    private void updateUserConnectedStatus(){
+        user_usernameS = preferences.getString("users_username",null);
+        user_passwordS = preferences.getString("users_password",null);
+        if (user_usernameS != null && user_passwordS != null )
+        {   //username and password are present, do your stuff
+            usernameText.setText("Username : "+user_usernameS+"\nPassword : "+user_passwordS);
+            Toast.makeText(MainActivity.this,"Connected Successfully",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            usernameText.setText("Currently your not connected to any IoT user account. Please contact admin for more information.");
+            Toast.makeText(MainActivity.this,"Your not connected",Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void updateAdminCredentials() {
@@ -72,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 admin_usernameS = dataSnapshot.child("username").getValue(String.class);
-                Toast.makeText(MainActivity.this,"admin username updated",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this,"admin username updated",Toast.LENGTH_SHORT).show();
                 admin_passwordS = dataSnapshot.child("password").getValue(String.class);
-                Toast.makeText(MainActivity.this,"admin password updated",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this,"admin password updated",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -178,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                     myEdit.remove("users_password");
                     myEdit.clear();
                     myEdit.apply();
+                    updateUserConnectedStatus();
                 }
                 else {
                     Toast.makeText(MainActivity.this,"Credentials are wrong !",Toast.LENGTH_SHORT).show();
@@ -240,6 +262,7 @@ public class MainActivity extends AppCompatActivity {
                     myEdit.apply();
                     Toast.makeText(MainActivity.this,"User Connected successfully",Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
+                    updateUserConnectedStatus();
                 }
                 else {
                     Toast.makeText(MainActivity.this,"Credentials are wrong !",Toast.LENGTH_SHORT).show();
@@ -326,6 +349,8 @@ public class MainActivity extends AppCompatActivity {
                                     dialog.dismiss();
                                 }
                             });
+
+                    updateUserConnectedStatus();
                 }
                 else {
                     Toast.makeText(MainActivity.this,"Credentials are wrong !",Toast.LENGTH_SHORT).show();

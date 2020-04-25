@@ -15,4 +15,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myToolBar"
+        app:layout_constraintVertical_bias="0.3">
+
+        <TextView
+            android:id="@+id/IoT_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:padding="5dp"
+            android:text="Currently your not connected to any IoT user account. Please contact admin for more information."
+            android:textAlignment="center"
+            android:textSize="15dp" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/earth_and_connections" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:padding="5dp"
+            android:text="The Internet of Things is not a concept; it is a network, the true technology-enabled Network of all networks. Make sure your connected to internet."
+            android:textAlignment="center"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
