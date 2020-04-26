@@ -62,7 +62,7 @@
                         android:layout_gravity="start|center"
                         android:layout_marginLeft="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_bulb_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -154,7 +154,7 @@
                 android:layout_gravity="start|center"
                 android:layout_marginLeft="8dp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/ic_bulb_on"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -246,7 +246,7 @@
                         android:layout_gravity="start|center"
                         android:layout_marginLeft="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_bulb_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -338,7 +338,7 @@
                         android:layout_gravity="start|center"
                         android:layout_marginLeft="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_bulb_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -430,7 +430,7 @@
                         android:layout_gravity="start|center"
                         android:layout_marginLeft="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_bulb_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -522,7 +522,7 @@
                         android:layout_gravity="start|center"
                         android:layout_marginLeft="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_bulb_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -614,7 +614,7 @@
                         android:layout_gravity="start|center"
                         android:layout_marginLeft="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_bulb_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -706,7 +706,7 @@
                         android:layout_gravity="start|center"
                         android:layout_marginLeft="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_bulb_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -798,7 +798,7 @@
                         android:layout_gravity="start|center"
                         android:layout_marginLeft="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_bulb_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -890,7 +890,7 @@
                         android:layout_gravity="start|center"
                         android:layout_marginLeft="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_bulb_on"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

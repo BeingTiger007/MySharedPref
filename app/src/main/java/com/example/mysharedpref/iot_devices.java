@@ -1,7 +1,6 @@
 package com.example.mysharedpref;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -12,16 +11,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +43,7 @@ public class iot_devices extends AppCompatActivity {
     Switch S0, S1, S2, S3, S4, S5, S6, S7, S8, S9;
     TextView T0, T1, T2, T3, T4, T5, T6, T7, T8, T9;
     TextView Sb0,Sb1,Sb2,Sb3,Sb4,Sb5,Sb6,Sb7,Sb8,Sb9;
+    ImageView i1,i2,i3,i4,i5,i6,i7,i8,i9,i10;
 
     private String admin_usernameS, admin_passwordS;
 
@@ -94,13 +95,24 @@ public class iot_devices extends AppCompatActivity {
         Sb8 = findViewById(R.id.IoT_deviceIdText9);
         Sb9 = findViewById(R.id.IoT_deviceIdText10);
 
+        i1 = findViewById(R.id.IoT_imageView1);
+        i2 = findViewById(R.id.IoT_imageView2);
+        i3 = findViewById(R.id.IoT_imageView3);
+        i4 = findViewById(R.id.IoT_imageView4);
+        i5 = findViewById(R.id.IoT_imageView5);
+        i6 = findViewById(R.id.IoT_imageView6);
+        i7 = findViewById(R.id.IoT_imageView7);
+        i8 = findViewById(R.id.IoT_imageView8);
+        i9 = findViewById(R.id.IoT_imageView9);
+        i10 = findViewById(R.id.IoT_imageView10);
+
         preferences = getSharedPreferences("myDevices", Context.MODE_PRIVATE);
         toolbar.setSubtitle("Username : " + preferences.getString("users_username", ""));
 
+        disableAllSwitch();
+
         database = FirebaseDatabase.getInstance();
         UserRef = database.getReference("IoT").child(preferences.getString("users_username", ""));
-
-        disableAllSwitch();
 
         updateAllDeviceData();
         updateAllSwitchData();
@@ -114,10 +126,12 @@ public class iot_devices extends AppCompatActivity {
                 if(isChecked){
                     UserRef.child("D0").setValue(true);
                     Sb0.setText("Device ID : D0 \\ Status : On");
+                    i1.setImageResource(R.drawable.ic_bulb_on);
                 }
                 else {
                     UserRef.child("D0").setValue(false);
                     Sb0.setText("Device ID : D0 \\ Status : Off");
+                    i1.setImageResource(R.drawable.ic_bulb_off);
                 }
             }
         });
@@ -128,10 +142,12 @@ public class iot_devices extends AppCompatActivity {
                 if(isChecked){
                     UserRef.child("D1").setValue(true);
                     Sb1.setText("Device ID : D1 \\ Status : On");
+                    i2.setImageResource(R.drawable.ic_bulb_on);
                 }
                 else {
                     UserRef.child("D1").setValue(false);
                     Sb1.setText("Device ID : D1 \\ Status : Off");
+                    i2.setImageResource(R.drawable.ic_bulb_off);
                 }
             }
         });
@@ -142,10 +158,12 @@ public class iot_devices extends AppCompatActivity {
                 if(isChecked){
                     UserRef.child("D2").setValue(true);
                     Sb2.setText("Device ID : D2 \\ Status : On");
+                    i3.setImageResource(R.drawable.ic_bulb_on);
                 }
                 else {
                     UserRef.child("D2").setValue(false);
                     Sb2.setText("Device ID : D2 \\ Status : Off");
+                    i3.setImageResource(R.drawable.ic_bulb_off);
                 }
             }
         });
@@ -156,10 +174,12 @@ public class iot_devices extends AppCompatActivity {
                 if(isChecked){
                     UserRef.child("D3").setValue(true);
                     Sb3.setText("Device ID : D3 \\ Status : On");
+                    i4.setImageResource(R.drawable.ic_bulb_on);
                 }
                 else {
                     UserRef.child("D3").setValue(false);
                     Sb3.setText("Device ID : D3 \\ Status : Off");
+                    i4.setImageResource(R.drawable.ic_bulb_off);
                 }
             }
         });
@@ -170,10 +190,12 @@ public class iot_devices extends AppCompatActivity {
                 if(isChecked){
                     UserRef.child("D4").setValue(true);
                     Sb4.setText("Device ID : D4 \\ Status : On");
+                    i5.setImageResource(R.drawable.ic_bulb_on);
                 }
                 else {
                     UserRef.child("D4").setValue(false);
                     Sb4.setText("Device ID : D4 \\ Status : Off");
+                    i5.setImageResource(R.drawable.ic_bulb_off);
                 }
             }
         });
@@ -184,10 +206,12 @@ public class iot_devices extends AppCompatActivity {
                 if(isChecked){
                     UserRef.child("D5").setValue(true);
                     Sb5.setText("Device ID : D5 \\ Status : On");
+                    i6.setImageResource(R.drawable.ic_bulb_on);
                 }
                 else {
                     UserRef.child("D5").setValue(false);
                     Sb5.setText("Device ID : D5 \\ Status : Off");
+                    i6.setImageResource(R.drawable.ic_bulb_off);
                 }
             }
         });
@@ -198,10 +222,12 @@ public class iot_devices extends AppCompatActivity {
                 if(isChecked){
                     UserRef.child("D6").setValue(true);
                     Sb6.setText("Device ID : D6 \\ Status : On");
+                    i7.setImageResource(R.drawable.ic_bulb_on);
                 }
                 else {
                     UserRef.child("D6").setValue(false);
                     Sb6.setText("Device ID : D6 \\ Status : Off");
+                    i7.setImageResource(R.drawable.ic_bulb_off);
                 }
             }
         });
@@ -212,10 +238,12 @@ public class iot_devices extends AppCompatActivity {
                 if(isChecked){
                     UserRef.child("D7").setValue(true);
                     Sb7.setText("Device ID : D7 \\ Status : On");
+                    i8.setImageResource(R.drawable.ic_bulb_on);
                 }
                 else {
                     UserRef.child("D7").setValue(false);
                     Sb7.setText("Device ID : D7 \\ Status : Off");
+                    i8.setImageResource(R.drawable.ic_bulb_off);
                 }
             }
         });
@@ -226,10 +254,12 @@ public class iot_devices extends AppCompatActivity {
                 if(isChecked){
                     UserRef.child("D8").setValue(true);
                     Sb8.setText("Device ID : D8 \\ Status : On");
+                    i9.setImageResource(R.drawable.ic_bulb_on);
                 }
                 else {
                     UserRef.child("D8").setValue(false);
                     Sb8.setText("Device ID : D8 \\ Status : Off");
+                    i9.setImageResource(R.drawable.ic_bulb_off);
                 }
             }
         });
@@ -240,10 +270,12 @@ public class iot_devices extends AppCompatActivity {
                 if(isChecked){
                     UserRef.child("D9").setValue(true);
                     Sb9.setText("Device ID : D9 \\ Status : On");
+                    i10.setImageResource(R.drawable.ic_bulb_on);
                 }
                 else {
                     UserRef.child("D9").setValue(false);
                     Sb9.setText("Device ID : D9 \\ Status : Off");
+                    i10.setImageResource(R.drawable.ic_bulb_off);
                 }
             }
         });
@@ -402,6 +434,17 @@ public class iot_devices extends AppCompatActivity {
                 S7.setChecked(D7);
                 S8.setChecked(D8);
                 S9.setChecked(D9);
+
+                if (!D0) i1.setImageResource(R.drawable.ic_bulb_off);
+                if (!D1) i2.setImageResource(R.drawable.ic_bulb_off);
+                if (!D2) i3.setImageResource(R.drawable.ic_bulb_off);
+                if (!D3) i4.setImageResource(R.drawable.ic_bulb_off);
+                if (!D4) i5.setImageResource(R.drawable.ic_bulb_off);
+                if (!D5) i6.setImageResource(R.drawable.ic_bulb_off);
+                if (!D6) i7.setImageResource(R.drawable.ic_bulb_off);
+                if (!D7) i8.setImageResource(R.drawable.ic_bulb_off);
+                if (!D8) i9.setImageResource(R.drawable.ic_bulb_off);
+                if (!D9) i10.setImageResource(R.drawable.ic_bulb_off);
 
                 enableAllSwitch();
             }
