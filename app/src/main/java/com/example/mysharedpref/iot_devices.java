@@ -44,7 +44,7 @@ public class iot_devices extends AppCompatActivity {
     TextView T0, T1, T2, T3, T4, T5, T6, T7, T8, T9;
     TextView Sb0,Sb1,Sb2,Sb3,Sb4,Sb5,Sb6,Sb7,Sb8,Sb9;
 
-    String admin_usernameS, admin_passwordS;
+    private String admin_usernameS, admin_passwordS;
 
 
     @Override
@@ -55,9 +55,6 @@ public class iot_devices extends AppCompatActivity {
         toolbar = findViewById(R.id.myToolBar2);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("IoT Control panel");
-
-        database = FirebaseDatabase.getInstance();
-        FlagRef = database.getReference("IoT").child("Admin");
 
         getWindow().setStatusBarColor(this.getResources().getColor(R.color.colorAccent));
         getWindow().setNavigationBarColor(this.getResources().getColor(R.color.colorAccent));
@@ -99,7 +96,10 @@ public class iot_devices extends AppCompatActivity {
 
         preferences = getSharedPreferences("myDevices", Context.MODE_PRIVATE);
         toolbar.setSubtitle("Username : " + preferences.getString("users_username", ""));
+
+        database = FirebaseDatabase.getInstance();
         UserRef = database.getReference("IoT").child(preferences.getString("users_username", ""));
+
         disableAllSwitch();
 
         updateAllDeviceData();
@@ -266,6 +266,8 @@ public class iot_devices extends AppCompatActivity {
     }
 
     private void updateAdminCredentials() {
+        database = FirebaseDatabase.getInstance();
+        FlagRef = database.getReference("IoT").child("Admin");
 
         FlagRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
